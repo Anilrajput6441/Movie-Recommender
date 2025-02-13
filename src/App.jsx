@@ -6,7 +6,7 @@ import {
 import Card from "./Components/Card"
 import Counter from "./Components/Counter"
 import LoadingBar from "./Components/LoadingBar"
-import Movie from "./Components/movie"
+import Movie from "./Components/Movie"
 import Landing from './Components/Landing';
 import Suggestion from './Components/Suggestion';
 import Details from './Components/Details';
