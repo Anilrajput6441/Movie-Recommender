@@ -1,14 +1,18 @@
 // https://www.omdbapi.com/?apikey=79b1935e&t=${name}
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState ,useRef} from 'react'
 import axios from 'axios'
 import Card from './Card';
+import Navbar from './Navbar';
+
 
 const Movie = () => {
   const [isFilter,setIsFilter] = useState(false);
   const [filter,setFilter] = useState(null);
   const [input,setInput] = useState("");
   const [movies,setMovie] = useState([]);
+  const inputRef = useRef(null);
   useEffect(() =>{
+    
     fetchMovie(input);
 
  },[input])
@@ -35,10 +39,13 @@ const Movie = () => {
 
  const search = () => {
     setInput(document.querySelector('.ipt').value.trim());
+    // setInput(inputRef.current.value.trim()); //both above and this are same
  }
   return (
-    
-        <><div className='mt-6'><input type="text" className="ipt border-2 p-2" placeholder='Enter movie name' /><button className="btn bg-amber-600 p-2 ml-1.5" onClick={search}>search</button></div>
+      
+    <>
+    <Navbar/>
+    <div className='mt-6'><input type="text" className="ipt border-2 p-2" placeholder='Enter movie name' ref={inputRef} /><button className="btn bg-amber-600 p-2 ml-1.5" onClick={search}>search</button></div>
      
     {!isFilter? (movies.length > 0 ? <Card data = {movies} type = "array" /> : "Loading..."):""}
     {isFilter ? (filter ? <Card data = {filter} type = "object"/>: "Loading...") : ""}
